@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 
 public class TokenManager {
 
-    // email + parol alıb login edən özəl köməkçi metod
+
     private static String login(String email, String password) {
         String body = "{ \"email\": \"" + email + "\", \"password\": \"" + password + "\" }";
 
@@ -21,7 +21,7 @@ public class TokenManager {
                 .extract().path("token");        // cavabdan "token" açarını çıxar
     }
 
-    // BaseTest məhz bu iki metodu çağırır:
+
     public static String adminToken() {
         return login(BaseTest.ADMIN_EMAIL, BaseTest.ADMIN_PASSWORD);
     }

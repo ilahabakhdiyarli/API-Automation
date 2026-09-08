@@ -41,21 +41,25 @@ public class UserTest extends BaseTest {
 
     @Test(description = "Tək istifadəçi — mövcud olan")
     public void task02_getExistingUser_matchesList() {
-        Response list = given().spec(publicSpec())
-                .when().get("/users")
-                .then().statusCode(200)
+        Response list =
+        given()
+                 .spec(publicSpec())
+        .when()
+                .get("/users")
+        .then()
+                .statusCode(200)
                 .extract().response();
 
-        String id             = list.path("[0].id");
+        String id          = list.path("[0].id");
         String nameInList  = list.path("[0].name");
         String emailInList = list.path("[0].email");
 
         given()
                 .spec(publicSpec())
                 .pathParam("id", 1)
-                .when()
+        .when()
                 .get("/users/{id}")
-                .then()
+        .then()
                 .statusCode(200)
                 .body("id", equalTo(id))
                 .body("name", equalTo(nameInList))
@@ -67,9 +71,9 @@ public class UserTest extends BaseTest {
         given()
                 .spec(publicSpec())
                 .pathParam("id", 999999)
-                .when()
+        .when()
                 .get("/users/{id}")
-                .then()
+        .then()
                 .statusCode(404);
     }
 

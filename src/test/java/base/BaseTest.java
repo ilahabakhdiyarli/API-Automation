@@ -26,7 +26,7 @@ public abstract class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public void globalSetup() {
         RestAssured.baseURI = BASE_URI;
-        // Test fail olanda tam sorğu + cavabı konsola yazsın
+
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         System.out.println("---------------------------------------------");
         System.out.println("Api auto - base URI: " + RestAssured.baseURI);
