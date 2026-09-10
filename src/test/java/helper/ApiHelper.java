@@ -1,56 +1,25 @@
 package helper;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import static io.restassured.RestAssured.given;
+import utils.Config;
 
 public class ApiHelper {
 
-    // Sıngle pattern
-
-    //Bu paternen bız obyectlerı rahatlıqla cagıra bılırık
-    private static  ApiHelper instance;
-    private RequestSpecification requestSpecification;
-    private String baseUrl;
-
-
-    private ApiHelper() {
-        requestSpecification = given();
+    private RequestSpecification given() {
+        return RestAssured
+                .given()
+                .baseUri(Config.BASE_URL)
+                .header("Accept", "application/json");
     }
 
-    public static ApiHelper getInstance() {
-        if (instance == null) {
-            instance = new ApiHelper();
-        }
-        return instance;
+    public Response get(String endpoint) {
+        return given()
+                .when()
+                .get(endpoint)
+                .then()
+                .extract()
+                .response();
     }
-
-    public RequestSpecification getRequestSpecification() {
-        return requestSpecification;
-    }
-
-    public void resetRequestSpecification() {
-        requestSpecification = given();
-        if (baseUrl != null) {
-            RestAssured.baseURI = baseUrl;
-        }
-    }
-
-
-    //Base url teyın edırık
-
-    public void  setBaseUrl(String url) {
-        this.baseUrl = url;
-        RestAssured.baseURI = url;
-        System.out.println("Base URL: " + url);
-    }
-
-    // endpoınt elave edılır
-
-    public  void  addEndpoint(String endpoint) {
-        requestSpecification = requestSpecification.basePath(endpoint);
-        System.out.println("Add Endpoint: " + endpoint);
-    }
-
 }
