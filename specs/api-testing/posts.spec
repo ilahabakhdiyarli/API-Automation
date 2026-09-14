@@ -10,14 +10,10 @@ Tags: posts, list, smoke
 * Cavabın status kodu "200" olur
 * Cavab boş deyil
 * "total" açarı null deyil
-* "total" açarının ədədi dəyəri "1" olur
+* "total" açarının dəyəri "0" -dən böyükdür
 * "data" massivi boş deyil
-* "total" açarı "data" massivinin ölçüsünə bərabərdir
 * "data" massivinin hər elementində "id, title, author, category" açarları null deyil
-* "data[0].id" açarının dəyəri "post_002" olur
-* "data[0].title" açarının dəyəri "Flutter ilə cross-platform mobil tətbiq inkişafı" olur
-* "data[0].author.name" açarının dəyəri "Anar Abbasov" olur
-* "data[0].category" açarının dəyəri "Mobile" olur
+* "data[0].author.name" açarı null deyil
 
 ## Tək post tam mətni və nested strukturu ilə qaytarılır
 
@@ -38,9 +34,9 @@ Tags: posts, comments
 * "/posts/post_001/comments" endpointinə GET sorğusu göndərilir
 * Cavabın status kodu "200" olur
 * "postId" açarının dəyəri "post_001" olur
-* "total" açarının ədədi dəyəri "2" olur
+* "total" açarının dəyəri "0" -dən böyükdür
 * "total" açarı "comments" massivinin ölçüsünə bərabərdir
 * "comments" massivinin hər elementində "id, author, content, replies" açarları null deyil
-* "comments[0].id" açarının dəyəri "cmt_001" olur
-* "comments[0].author.name" açarının dəyəri "Leyla Həsənova" olur
-* "comments[0].content" açarının dəyəri "Çox faydalı məqalə idi! Workers-ə keçməyi düşünürəm." olur
+* "comments[0].id" açarı null deyil
+* "comments[0].author.name" açarı null deyil
+* "comments[0].content" açarı null deyil

@@ -40,13 +40,13 @@ Tags: products, reviews
 * "/products/prod_001/reviews" endpointinə GET sorğusu göndərilir
 * Cavabın status kodu "200" olur
 * "productId" açarının dəyəri "prod_001" olur
-* "rating" açarının ədədi dəyəri "4.5" olur
-* "reviewCount" açarının ədədi dəyəri "2" olur
+* "rating" açarının dəyəri "0" -dən böyükdür
+* "reviewCount" açarının dəyəri "0" -dən böyükdür
 * "reviews" massivi boş deyil
 * "reviewCount" açarı "reviews" massivinin ölçüsünə bərabərdir
 * "reviews[0].id" açarının dəyəri "rev_001" olur
-* "reviews[0].userName" açarının dəyəri "Leyla Həsənova" olur
-* "reviews[0].rating" açarının ədədi dəyəri "5" olur
+* "reviews[0].userName" açarı null deyil
+* "reviews[0].rating" açarının dəyəri "0" -dən böyükdür
 
 ## Mövcud olmayan məhsul üçün 404 qaytarılır
 

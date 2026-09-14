@@ -134,4 +134,36 @@ public class ApiRequestImp {
         Assert.assertEquals(actual, expected,
                 "'" + listPath + "' massivinin dəyərləri uyğun gəlmir");
     }
+
+    @Step("<email> və <password> ilə giriş edilir və token saxlanılır")
+    public void giris(String email, String password) {
+        String body = String.format(
+                "{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+        Response r = api.post("/auth/login", body);
+        saxla(r);
+
+        if (r.statusCode() != 200) {
+            Assert.fail("Login alınmadı. Status: " + r.statusCode()
+                    + ", cavab: " + r.getBody().asString());
+        }
+
+        String token = r.jsonPath().getString("token");
+        Assert.assertNotNull(token, "Token cavabda tapılmadı: " + r.getBody().asString());
+        ScenarioDataStore.put("token", token);
+    }
+
+    @Step("<endpoint> endpointinə token ilə POST göndərilir, body: <body>")
+    public void tokenliPostGonder(String endpoint, String body) {
+        body = hazirla(body);
+        String token = (String) ScenarioDataStore.get("token");
+        saxla(api.post(endpoint, body, token));
+    }
+
+    private String hazirla(String body) {
+        return body
+                .replace("'", "\"")
+                .replace("{{ts}}", String.valueOf(System.currentTimeMillis()));
+    }
+
+
 }
